@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 
-public class ChangableTachoWidget extends BasicTachoWidget implements Observer{
+public class ChangableTachoWidget extends TexturedTachoWidged implements Observer{
 
 	/**
 	 * 
