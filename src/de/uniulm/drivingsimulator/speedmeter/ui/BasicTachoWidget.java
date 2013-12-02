@@ -6,29 +6,49 @@ import java.awt.Point;
 
 public class BasicTachoWidget extends AbstractTachoWidget{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * needed for rendering, the steps shown at the speedmeter
+	 */
 	private final int speedSteps = 20;
+	
+	/**
+	 * needed for rendering, the amount of steps to render 
+	 */
 	private final int speedStepCount;
+	
+	/**
+	 * needed for rendering, the height of the step | 
+	 */
 	private final int stepRadius=200;
+	
+	/**
+	 * needed for rendering, the distance to draw the speed-strings from the center
+	 */
 	private int stringDistanceToCenter=215;
 	
 	
-	
+	/**
+	 * where the middle is
+	 */
 	private Point middle;
 		
 	public BasicTachoWidget() {
 		speedStepCount = getTachoMaxSpeed()/speedSteps +1;
 	}
 	
+	/**
+	 * neede for rendering, draws a step |
+	 * @param g the graphics to draw to
+	 */
 	protected void drawStep(Graphics2D g){
 		g.drawLine(stepRadius,0,stepRadius+10,0);
 	}
 
 	
-	
+	//not implemented
 	@Override
 	protected void drawBackground(Graphics2D g) {
 		
@@ -38,10 +58,12 @@ public class BasicTachoWidget extends AbstractTachoWidget{
 
 	@Override
 	protected void drawBackgroundWithNeedleStartRotation(Graphics2D g) {
-		g.rotate(Math.PI);
-		g.drawArc(-200, -200, 400, 400, 0, -getTachoMaxArc());
+		g.rotate(Math.PI);											//fix rotation
+		g.drawArc(-200, -200, 400, 400, 0, -getTachoMaxArc());		//draw the arc
 		double rotation=0;
-		for (int i = 0;i<speedStepCount;i++){
+		
+		//draw the steps
+		for (int i = 0;i<speedStepCount;i++){						
 			drawStep(g);	
 			g.rotate(step1Speed*speedSteps);
 			rotation+=step1Speed*speedSteps;	
@@ -63,6 +85,9 @@ public class BasicTachoWidget extends AbstractTachoWidget{
 		
 	}
 	
+	/**
+	 * draw speed strings
+	 */
 	@Override
 	protected void drawFrom00Center(Graphics2D g) {
 		g.setColor(Color.BLACK);

@@ -39,7 +39,6 @@ public class TexturedTachoWidged extends AbstractTachoWidget{
 	
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paint(g);
 		g.setColor(Color.GREEN);
 		g.drawOval(394, 446, 6, 6);
@@ -49,6 +48,7 @@ public class TexturedTachoWidged extends AbstractTachoWidget{
 	@Override
 	protected void drawBackgroundWithNeedleStartRotation(Graphics2D g) {
 		//XXX: not in use
+		//draws the fancy looking speed indicating arc
 		g.rotate(Math.PI);
 		Color c = new  Color((int)(getSpeed()%255),(int)(255-(getSpeed()%255)),0);
 		g.setColor(c);
