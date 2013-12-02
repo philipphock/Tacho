@@ -2,12 +2,14 @@ package de.uniulm.drivingsimulator.speedmeter.ui;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
 
-public class TachoView extends JFrame{
+import de.uniulm.opends.connectivity.opends_xml_interface_subscription.protocol.OpenDSValue;
+import de.uniulm.opends.connectivity.opends_xml_interface_subscription.protocol.SubscriptionListener;
+
+public class TachoView extends JFrame implements SubscriptionListener{
 	private static final long serialVersionUID = 3481634193479144614L;
 
 	private final ChangableTachoWidget tachoWidget;
@@ -54,6 +56,21 @@ public class TachoView extends JFrame{
 				}
 			}
 		});
+	}
+
+	@Override
+	public void eventReceived(OpenDSValue<?> value) {
+		switch (value.getType()) {
+		case RPM:
+			
+			break;
+		case SPEED:
+			@SuppressWarnings("unchecked")
+			OpenDSValue<Double> v = (OpenDSValue<Double>) value;
+			tachoWidget.updateSpeed(v.getValue());
+		default:
+			break;
+		}
 	}
 	
 }
