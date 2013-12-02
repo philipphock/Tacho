@@ -26,8 +26,8 @@ public class TexturedTachoWidged extends AbstractTachoWidget{
 		setSize(800, 600);
 		setVisible(true);
 
-		background = (new ImageIcon("./img/background_2.png")).getImage();
-		needle = (new ImageIcon("./img/needle.png")).getImage();
+		background = (new ImageIcon("./img/tacho.jpg")).getImage();
+		needle = (new ImageIcon("./img/nadel.jpg")).getImage();
 	}
 	
 	
@@ -70,6 +70,7 @@ public class TexturedTachoWidged extends AbstractTachoWidget{
 	@Override
 	protected void drawNeedle(Graphics2D g) {
 		g.drawImage(needle, -236, -19, 255, 37, null);
+		g.drawImage(needle, -60, -375, 180, 290, null);
 	}
 
 	@Override
